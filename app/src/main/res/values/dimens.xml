@@ -21,4 +21,6 @@
     <dimen name="size_small_24">24dp</dimen>
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="spacing_larger_72">72dp</dimen>
+    <dimen name="spacing_medial_24">24dp</dimen>
+
 </resources>
