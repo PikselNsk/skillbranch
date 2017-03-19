@@ -39,7 +39,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void showWithDelay() {
+    public void hideWithDelay() {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

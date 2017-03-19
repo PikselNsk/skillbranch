@@ -1,6 +1,8 @@
 package info.javaway.skillbranch.ui.activities;
 
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ public class MainActivity extends BaseActivity {
 
     public static final String  TAG = ConstantManager.TAG_PREFIX + "MainActivity.TAG";
     private ImageView mAboutImageView;
+    private CoordinatorLayout mCoordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +24,21 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
         mAboutImageView = (ImageView) findViewById(R.id.about_button);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_conainer);
         mAboutImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showProgress();
+                hideWithDelay();
             }
         });
         if (savedInstanceState == null){
             //активити создается впервые
+            showSnackbar("Активити впервые запущено");
         }else{
             //активити уже запускалось
+            showSnackbar("Активити уже создавалось");
+
         }
 
     }
@@ -77,5 +85,9 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
+    }
+
+    private void showSnackbar(String message){
+        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
 }
