@@ -338,6 +338,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/about_button"
                 style="@style/icon.left"
                 android:src="@drawable/ic_nature_people_black_24dp"/>
 
