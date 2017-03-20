@@ -22,5 +22,7 @@
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="spacing_larger_72">72dp</dimen>
     <dimen name="spacing_medial_24">24dp</dimen>
+    <dimen name="size_medium_56">56dp</dimen>
+    <dimen name="profile_image_size">256dp</dimen>
 
 </resources>

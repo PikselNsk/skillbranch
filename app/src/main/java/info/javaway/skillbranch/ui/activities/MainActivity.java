@@ -1,11 +1,15 @@
 package info.javaway.skillbranch.ui.activities;
 
-import android.content.Intent;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,9 +18,11 @@ import info.javaway.skillbranch.utils.ConstantManager;
 
 public class MainActivity extends BaseActivity {
 
-    public static final String  TAG = ConstantManager.TAG_PREFIX + "MainActivity.TAG";
+    public static final String TAG = ConstantManager.TAG_PREFIX + "MainActivity.TAG";
     private ImageView mAboutImageView;
     private CoordinatorLayout mCoordinatorLayout;
+    private Toolbar mToolbar;
+    private DrawerLayout mNavigationDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,9 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "onCreate");
         mAboutImageView = (ImageView) findViewById(R.id.about_button);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_conainer);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+
         mAboutImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,15 +41,25 @@ public class MainActivity extends BaseActivity {
                 hideWithDelay();
             }
         });
-        if (savedInstanceState == null){
+        setupToolbar();
+        setupDrawer();
+        if (savedInstanceState == null) {
             //активити создается впервые
             showSnackbar("Активити впервые запущено");
-        }else{
+        } else {
             //активити уже запускалось
             showSnackbar("Активити уже создавалось");
 
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            mNavigationDrawer.openDrawer(GravityCompat.START);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -87,7 +106,31 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "onDestroy");
     }
 
-    private void showSnackbar(String message){
+    private void showSnackbar(String message) {
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
+
+    private void setupToolbar() {
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_reorder_black_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    private void setupDrawer() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                showSnackbar(item.getTitle().toString());
+                item.setCheckable(true);
+                mNavigationDrawer.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
+    }
+
 }
