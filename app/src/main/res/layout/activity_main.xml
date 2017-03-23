@@ -17,6 +17,7 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
             style="@style/AppTheme.AppBarOverlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -32,9 +33,10 @@
                     android:id="@+id/user_photo_id"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/profile_image_size"
+                    android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/cat"
-                    android:fitsSystemWindows="true"/>
+                    android:src="@drawable/cat"/>
+
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     style="@style/AppTheme.PopupOverlay"
@@ -49,8 +51,8 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="info.javaway.skillbranch.ui.activities.MainActivity"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="info.javaway.skillbranch.ui.activities.MainActivity">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -197,6 +199,7 @@
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/user_phone_edittext"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
@@ -247,6 +250,7 @@
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/user_email_edittext"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
@@ -298,11 +302,12 @@
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/user_vk_edittext"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
                                 android:focusable="false"
-                                android:hint="E-Mail"
+                                android:hint="VK"
                                 android:inputType="textEmailAddress"
                                 android:text="344532@rgsg.reg"
                                 android:textColor="@color/black"
@@ -349,11 +354,12 @@
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/user_git_edittext"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
                                 android:focusable="false"
-                                android:hint="E-Mail"
+                                android:hint="GIT"
                                 android:inputType="textEmailAddress"
                                 android:text="344532@rgsg.reg"
                                 android:textColor="@color/black"
@@ -401,11 +407,12 @@
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/user_bio_edittext"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:enabled="false"
                                 android:focusable="false"
-                                android:hint="E-Mail"
+                                android:hint="BIO"
                                 android:inputType="textEmailAddress"
                                 android:text="344532@rgsg.reg"
                                 android:textColor="@color/black"
@@ -418,12 +425,18 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            app:layout_anchor="@id/appbar_layout"
+            app:layout_anchorGravity="bottom|right"
+            android:layout_marginRight="@dimen/fab_right_space"
+            />
     </android.support.design.widget.CoordinatorLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_mode_edit_black_24dp"/>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"

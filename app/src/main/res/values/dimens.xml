@@ -24,5 +24,6 @@
     <dimen name="spacing_medial_24">24dp</dimen>
     <dimen name="size_medium_56">56dp</dimen>
     <dimen name="profile_image_size">256dp</dimen>
+    <dimen name="fab_right_space">16dp</dimen>
 
 </resources>
